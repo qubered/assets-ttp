@@ -1,7 +1,7 @@
 import { AssetSidebar } from "@/components/asset-sidebar"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { Separator } from "@/components/ui/separator"
-
+import { ConvexClientProvider } from "./ConvexClientProvider";
 
 export const metadata = {
     title: "TwoToned RMS"
@@ -21,9 +21,12 @@ export default function AppLayout({
                     <Separator orientation="vertical" className="mx-2 h-4" />
                     <span className="text-sm text-muted-foreground">Welcome to your asset management dashboard</span>
                 </header>
-                <div className="m-4">
-                    {children}
-                </div>
+                <ConvexClientProvider>
+                  <div className="m-4">
+                      {children}
+                  </div>
+                </ConvexClientProvider>
+
                 
             </SidebarInset>
       </SidebarProvider>
