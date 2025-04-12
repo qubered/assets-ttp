@@ -20,18 +20,6 @@ import { cn } from "@/lib/utils"
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 
-// Sample data - replace with your actual data source
-const models = [
-  { label: "Model A", value: "1" },
-  { label: "Model B", value: "2" },
-  { label: "Model C", value: "3" },
-]
-
-const locations = [
-  { label: "Warehouse A", value: "1" },
-  { label: "Warehouse B", value: "2" },
-  { label: "Site C", value: "3" },
-]
 
 // Simplified form schema without model-specific details
 const formSchema = z.object({
