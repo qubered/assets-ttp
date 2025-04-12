@@ -11,6 +11,7 @@ import {
   type VisibilityState,
   getFilteredRowModel,
   type ColumnFiltersState,
+  type ColumnMeta,
 } from "@tanstack/react-table"
 import { useState, useEffect } from "react"
 
@@ -25,10 +26,15 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, SlidersHorizontal } from "lucide-react"
 
+// Add type definition for column meta
+type ExtendedColumnMeta<TData> = ColumnMeta<TData, unknown> & {
+  label?: string
+}
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
-  hiddenColumns?: string[] // New prop for columns that should be hidden by default
+  hiddenColumns?: string[]
 }
 
 export function DataTable<TData, TValue>({ columns, data, hiddenColumns = [] }: DataTableProps<TData, TValue>) {
@@ -100,7 +106,7 @@ export function DataTable<TData, TValue>({ columns, data, hiddenColumns = [] }: 
                     checked={column.getIsVisible()}
                     onCheckedChange={(value) => column.toggleVisibility(!!value)}
                   >
-                    {column.columnDef.meta?.label || column.id}
+                    {(column.columnDef.meta as { label?: string })?.label || column.id}
                   </DropdownMenuCheckboxItem>
                 )
               })}
