@@ -43,7 +43,8 @@ export const createAsset = mutation({
         assetModel: v.string(),
         storageLocation: v.string(),
         assetName: v.optional(v.string()),
-        assetPurchaseDate: v.optional(v.string())
+        assetPurchaseDate: v.optional(v.string()),
+        serialNumber: v.optional(v.string()),
      },
     handler: async (ctx, args) => {
       const taskId = await ctx.db.insert("assets", { 
@@ -51,7 +52,8 @@ export const createAsset = mutation({
         assetModel: args.assetModel,
         storageLocation: args.storageLocation,
         assetName: args.assetName,
-        assetPurchaseDate: args.assetPurchaseDate});
+        assetPurchaseDate: args.assetPurchaseDate,
+        serialNumber: args.serialNumber});
       // do something with `taskId`
     },
   });

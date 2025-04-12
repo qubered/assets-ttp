@@ -11,7 +11,7 @@ export default defineSchema({
     storageLocation: v.string(),
 
     // --- Optional Fields ---
-
+    serialNumber: v.optional(v.string()),
     assetName: v.optional(v.string()),
     assetCategory: v.optional(v.string()),
     assetPurchasePrice: v.optional(v.number()),

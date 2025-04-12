@@ -25,6 +25,7 @@ import { api } from "../../convex/_generated/api";
 const formSchema = z.object({
   assetNumber: z.string().min(1, { message: "Asset number is required" }),
   assetName: z.string().optional(),
+  assetSerialNumber: z.string().optional(),
   assetModel: z.string().min(1, { message: "Asset model is required" }),
   storageLocation: z.string().min(1, { message: "Storage location is required" }),
   purchaseDate: z.date({
@@ -66,6 +67,7 @@ export function AssetForm() {
       assetName: "",
       assetModel: "",
       storageLocation: "",
+      assetSerialNumber: "",
       purchaseDate: undefined,
     },
   })
@@ -77,7 +79,8 @@ export function AssetForm() {
       assetName: values.assetName,
       assetModel: values.assetModel, // Convert string to number
       storageLocation: values.storageLocation, // Convert string to number
-      assetPurchaseDate: values.purchaseDate.toISOString() // Convert Date to ISO string
+      assetPurchaseDate: values.purchaseDate.toISOString(), // Convert Date to ISO string
+      serialNumber: values.assetSerialNumber
     })
     alert("Asset created successfully!")
   }
@@ -115,6 +118,21 @@ export function AssetForm() {
                     <FormLabel>Asset Name</FormLabel>
                     <FormControl>
                       <Input placeholder="Enter asset name (optional)" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Asset Serial Number (Optional) */}
+              <FormField
+                control={form.control}
+                name="assetSerialNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Asset Serial Number</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter asset serial number (optional)" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
